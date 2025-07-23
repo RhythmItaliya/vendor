@@ -23,7 +23,17 @@ export default async function EditVendorPage({ params }: { params: { id: string 
 
   async function handleEdit(values: Partial<Vendor>) {
     "use server";
-    await updateVendor(params.id, values);
+    const { id, userId, ...updateData } = values;
+    await updateVendor(params.id, {
+      vendorName: updateData.vendorName || "",
+      bankAccountNo: updateData.bankAccountNo || "",
+      bankName: updateData.bankName || "",
+      addressLine1: updateData.addressLine1 || "",
+      addressLine2: updateData.addressLine2 || "",
+      city: updateData.city || "",
+      country: updateData.country || "",
+      zipCode: updateData.zipCode || "",
+    });
     redirect("/");
   }
 

@@ -81,9 +81,7 @@ export async function updateVendor(
   if (!vendor || vendor.userId !== user.id) throw new Error("Vendor not found or unauthorized")
 
   return db.vendor.update({
-    where: {
-       id
-       },
+    where: { id },
     data,
   })
 }

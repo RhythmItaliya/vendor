@@ -16,26 +16,16 @@ export default async function AddVendorPage() {
 
   async function handleAdd(values: Partial<Vendor>) {
     "use server";
-    const {
-      vendorName = "",
-      bankAccountNo = "",
-      bankName = "",
-      addressLine1 = "",
-      addressLine2 = "",
-      city = "",
-      country = "",
-      zipCode = "",
-    } = values;
-
+    const { id, userId, ...addData } = values;
     await addVendor({
-      vendorName,
-      bankAccountNo,
-      bankName,
-      addressLine1,
-      addressLine2,
-      city,
-      country,
-      zipCode,
+      vendorName: addData.vendorName || "",
+      bankAccountNo: addData.bankAccountNo || "",
+      bankName: addData.bankName || "",
+      addressLine1: addData.addressLine1 || "",
+      addressLine2: addData.addressLine2 || "",
+      city: addData.city || "",
+      country: addData.country || "",
+      zipCode: addData.zipCode || "",
     });
     redirect("/");
   }
