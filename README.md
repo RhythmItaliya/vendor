@@ -39,5 +39,7 @@ A minimal Next.js 14 project using Google authentication with Auth.js (NextAuth.
 
 ## Links
 
-- [View Source Code on GitHub](https://github.com/SSazzadur/nextjs-google-auth)
-- [About Me](https://github.com/SSazzadur)
+- [Personal Website](https://www.rhythmitaliya.com/)
+- [LinkedIn](https://www.linkedin.com/in/rhythmitaliya/)
+- [GitHub Profile](https://github.com/rhythmitaliya)
+- [Source Code (This Repo)](https://github.com/RhythmItaliya/vendor#)
