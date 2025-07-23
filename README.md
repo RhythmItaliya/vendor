@@ -24,13 +24,18 @@ A minimal Next.js 14 project using Google authentication with Auth.js (NextAuth.
 2. **Set up environment variables**
    Create a `.env` file in the root directory:
    ```env
-   AUTH_GOOGLE_ID=your-google-client-id
-   AUTH_GOOGLE_SECRET=your-google-client-secret
-   AUTH_SECRET=your-auth-secret
-   DATABASE_URL=your-mongodb-connection-string
+   AUTH_GOOGLE_ID=
+   AUTH_GOOGLE_SECRET=
+   AUTH_SECRET=
+   DATABASE_URL=
    ```
 
-3. **Run the development server**
+3. **Push the Prisma schema to your database**
+   ```bash
+   npx prisma db push
+   ```
+
+4. **Run the development server**
    ```bash
    npm run dev
    ```

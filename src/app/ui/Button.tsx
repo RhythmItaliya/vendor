@@ -7,17 +7,21 @@ const variants: Record<string, string> = {
   gray: "bg-gray-200 text-black",
 };
 
-export default function Button({ variant = "blue", className = "", ...props }: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: "blue" | "red" | "gray" }) {
+export default function Button({ variant = "blue", className = "", children, ...props }: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: "blue" | "red" | "gray" }) {
+  const isLoading = props.disabled && (props['aria-busy'] === true || props['aria-busy'] === 'true');
   return (
     <button
       {...props}
       className={
         variants[variant] +
-        " px-3 py-1 rounded " +
+        " px-3 py-1 rounded flex items-center justify-center gap-2 " +
         className
       }
     >
-      {props.children}
+      {isLoading && (
+        <span className="inline-block w-4 h-4 border-2 border-t-transparent border-white rounded-full animate-spin"></span>
+      )}
+      {children}
     </button>
   );
 } 
