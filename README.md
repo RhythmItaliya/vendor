@@ -40,5 +40,15 @@ A minimal Next.js 14 project using Google authentication with Auth.js (NextAuth.
    npm run dev
    ```
 
+## Code Formatting
+
+Before pushing your code, please run the following command to automatically format your code using Prettier:
+
+```
+npm run format
+```
+
+This ensures consistent code style across the project.
+
 ---
 

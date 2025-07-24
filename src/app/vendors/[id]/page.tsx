@@ -1,54 +1,52 @@
-import { updateVendor, getVendorById } from "@/app/_actions/vendor";
-import Button from "@/app/ui/Button";
-import Link from "next/link";
-import Header from "@/app/ui/Header";
+import { updateVendor, getVendorById } from '@/app/_actions/vendor';
+import Button from '@/app/ui/Button';
+import Link from 'next/link';
+import Header from '@/app/ui/Header';
 
-import { auth } from "@/auth";
-import { notFound, redirect } from "next/navigation";
-import { Vendor } from "@/types/vendor";
+import { auth } from '@/auth';
+import { notFound, redirect } from 'next/navigation';
+import { Vendor } from '@/types/vendor';
 
-
-import VendorForm from "@/app/ui/Form";
-
+import VendorForm from '@/app/ui/Form';
 
 export default async function EditVendorPage({ params }: { params: { id: string } }) {
-  const session = await auth();
-  if (!session) return notFound();
-  const userName = session.user.name || "User";
-  const userImage = session.user.image || "https://ui-avatars.com/api/?name=User";
-  
-  const vendor = await getVendorById(params.id);
+     const session = await auth();
+     if (!session) return notFound();
+     const userName = session.user.name || 'User';
+     const userImage = session.user.image || 'https://ui-avatars.com/api/?name=User';
 
-  if (!vendor) return notFound();
+     const vendor = await getVendorById(params.id);
 
-  async function handleEdit(values: Partial<Vendor>) {
-    "use server";
-    const { id, userId, ...updateData } = values;
-    await updateVendor(params.id, {
-      vendorName: updateData.vendorName || "",
-      bankAccountNo: updateData.bankAccountNo || "",
-      bankName: updateData.bankName || "",
-      addressLine1: updateData.addressLine1 || "",
-      addressLine2: updateData.addressLine2 || "",
-      city: updateData.city || "",
-      country: updateData.country || "",
-      zipCode: updateData.zipCode || "",
-    });
-    redirect("/");
-  }
+     if (!vendor) return notFound();
 
-  return (
-    <main className="max-w-3xl mx-auto p-6">
-      <Header user={{ name: userName, image: userImage }} />
+     async function handleEdit(values: Partial<Vendor>) {
+          'use server';
+          const { id, userId, ...updateData } = values;
+          await updateVendor(params.id, {
+               vendorName: updateData.vendorName || '',
+               bankAccountNo: updateData.bankAccountNo || '',
+               bankName: updateData.bankName || '',
+               addressLine1: updateData.addressLine1 || '',
+               addressLine2: updateData.addressLine2 || '',
+               city: updateData.city || '',
+               country: updateData.country || '',
+               zipCode: updateData.zipCode || '',
+          });
+          redirect('/');
+     }
 
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-800">Edit Vendor</h2>
-        <Link href="/">
-          <Button>Back</Button>
-        </Link>
-      </div>
+     return (
+          <main className="max-w-3xl mx-auto p-6">
+               <Header user={{ name: userName, image: userImage }} />
 
-      <VendorForm initialValues={vendor} onSubmit={handleEdit} submitLabel="Update" />
-    </main>
-  );
+               <div className="flex items-center justify-between mb-6">
+                    <h2 className="text-2xl font-bold text-gray-800">Edit Vendor</h2>
+                    <Link href="/">
+                         <Button>Back</Button>
+                    </Link>
+               </div>
+
+               <VendorForm initialValues={vendor} onSubmit={handleEdit} submitLabel="Update" />
+          </main>
+     );
 }
